@@ -1,0 +1,27 @@
+language: go
+go:
+- '1.17'
+before_install:
+- go mod vendor
+- go test -race
+script:
+- go build -o walkwithme
+deploy:
+  provider: lambda
+  # Weird tweak to get a valid path to root-level executable.  AWS joins module_name & handler_name with a '.'
+  module_name: "./"
+  handler_name: /walkwithme
+  region: eu-central-1
+  runtime: go1.x
+  function_name: walkwithme
+  publish: true 
+  zip: deploy.zip
+  timeout: 300
+  memory_size: 512
+  role: $ROLE
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  on:
+    branch: main
+before_deploy:
+   - zip -r deploy.zip walkwithme
