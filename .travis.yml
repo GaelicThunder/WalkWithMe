@@ -5,15 +5,15 @@ before_install:
 - go mod vendor
 - go test -race
 script:
-- go build -o walkwithme
+- go build -o WalkWithMe
 deploy:
   provider: lambda
   # Weird tweak to get a valid path to root-level executable.  AWS joins module_name & handler_name with a '.'
   module_name: "./"
-  handler_name: /walkwithme
+  handler_name: /WalkWithMe
   region: eu-central-1
   runtime: go1.x
-  function_name: walkwithme
+  function_name: WalkWithMe
   publish: true 
   zip: deploy.zip
   timeout: 300
@@ -24,4 +24,4 @@ deploy:
   on:
     branch: master
 before_deploy:
-   - zip -r deploy.zip walkwithme
+   - zip -r deploy.zip WalkWithMe
