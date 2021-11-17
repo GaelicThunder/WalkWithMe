@@ -5,8 +5,7 @@ import (
 	"os"
 
 	"github.com/dghubble/go-twitter/twitter"
-	"golang.org/x/oauth2"
-	"golang.org/x/oauth2/clientcredentials"
+	"github.com/dghubble/oauth1"
 )
 
 type Twitter interface {
