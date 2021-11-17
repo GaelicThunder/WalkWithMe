@@ -55,11 +55,11 @@ func (w *ConcreteWalker) PositionComputation(from, to string) (string, time.Dura
 			totaltime += route[i].Legs[j].Duration
 			actualPosition = route[i].Legs[j].EndAddress
 			if totaltime >= time.Duration(1)*time.Hour {
-				break
+				return actualPosition, totaltime, nil
 			}
 		}
 		if totaltime >= time.Duration(1)*time.Hour {
-			break
+			return actualPosition, totaltime, nil
 		}
 	}
 	return actualPosition, totaltime, nil
