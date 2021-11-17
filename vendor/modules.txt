@@ -1,3 +1,10 @@
+# github.com/aws/aws-lambda-go v1.27.0
+## explicit
+github.com/aws/aws-lambda-go/events
+github.com/aws/aws-lambda-go/lambda
+github.com/aws/aws-lambda-go/lambda/handlertrace
+github.com/aws/aws-lambda-go/lambda/messages
+github.com/aws/aws-lambda-go/lambdacontext
 # github.com/aws/aws-sdk-go v1.40.52
 ## explicit
 github.com/aws/aws-sdk-go/aws

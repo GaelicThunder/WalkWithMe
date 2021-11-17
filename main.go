@@ -7,9 +7,16 @@ import (
 	"walkwithme/database"
 	"walkwithme/twitterconnector"
 	"walkwithme/walker"
+
+	"github.com/aws/aws-lambda-go/events"
+	"github.com/aws/aws-lambda-go/lambda"
 )
 
 func main() {
+	lambda.Start(processing)
+}
+
+func processing(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	// initialise database and get the actual walk status
 	db := database.NewDynamoDB()
 	walk, err := db.GetWalk()
@@ -24,11 +31,11 @@ func main() {
 		}
 		walk.LastRest = time.Now()
 		db.SaveWalk(walk)
-		return
+		return events.APIGatewayProxyResponse{Body: "", StatusCode: 200}, nil
 	}
 	if time.Since(walk.LastRest) < 8*time.Hour {
 		// we are resting! No interuption allowed!
-		return
+		return events.APIGatewayProxyResponse{Body: "", StatusCode: 200}, nil
 	}
 	// we have enought energy to keep going!
 	actualPosition, timeWalked, err := walker.NewWalker().PositionComputation(walk.ActualPosition, walk.To)
@@ -45,4 +52,6 @@ func main() {
 
 	// since we have done everything we can store the updated status to the database
 	db.SaveWalk(walk)
+
+	return events.APIGatewayProxyResponse{Body: "", StatusCode: 200}, nil
 }
