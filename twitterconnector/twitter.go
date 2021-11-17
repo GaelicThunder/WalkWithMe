@@ -25,9 +25,9 @@ type ConcreteTwitter struct{}
 
 // tweetStatusUpdate update on twitter the given message
 func (t *ConcreteTwitter) TweetStatusUpdate(tweet string) error {
-	clientID := os.Getenv("TWITER_ID")
-	secret := os.Getenv("TWITER_SECRET")
-	tknURL := os.Getenv("TWITER_URL")
+	clientID := os.Getenv("TWITTER_ID")
+	secret := os.Getenv("TWITTER_SECRET")
+	tknURL := os.Getenv("TWITTER_URL")
 	// oauth2 configures a client that uses app credentials to keep a fresh token
 	config := &clientcredentials.Config{
 		ClientID:     clientID,
