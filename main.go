@@ -20,7 +20,7 @@ func main() {
 	if time.Since(walk.LastRest) > 20*time.Hour && !walk.LastRest.IsZero() {
 		err = twitterconnector.NewTwitter().TweetStatusUpdate("I'm going to rest! Cheers!")
 		if err != nil {
-			log.Fatalf("fatal error: %s", err)
+			log.Fatalf("error while twitting rest: %s", err)
 		}
 		walk.LastRest = time.Now()
 		db.SaveWalk(walk)
@@ -40,7 +40,7 @@ func main() {
 	// tweet status update
 	err = twitterconnector.NewTwitter().TweetStatusUpdate(fmt.Sprintf("Starting from %s after %s time I'm now at %s", walk.From, walk.TotalHoursWalked, walk.ActualPosition))
 	if err != nil {
-		log.Fatalf("fatal error: %s", err)
+		log.Fatalf("error while twitting: %s", err)
 	}
 
 	// since we have done everything we can store the updated status to the database

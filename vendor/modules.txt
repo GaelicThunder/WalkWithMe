@@ -49,12 +49,13 @@ github.com/cenkalti/backoff
 # github.com/dghubble/go-twitter v0.0.0-20210609183100-2fdbf421508e
 ## explicit
 github.com/dghubble/go-twitter/twitter
+# github.com/dghubble/oauth1 v0.7.0
+## explicit
+github.com/dghubble/oauth1
 # github.com/dghubble/sling v1.3.0
 github.com/dghubble/sling
 # github.com/gofrs/uuid v3.2.0+incompatible
 github.com/gofrs/uuid
-# github.com/golang/protobuf v1.3.1
-github.com/golang/protobuf/proto
 # github.com/google/go-querystring v1.0.0
 github.com/google/go-querystring/query
 # github.com/google/uuid v1.1.1
@@ -78,22 +79,10 @@ go.opencensus.io/stats/view
 go.opencensus.io/tag
 # golang.org/x/net v0.0.0-20210614182718-04defd469f4e
 golang.org/x/net/context
-golang.org/x/net/context/ctxhttp
 # golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be
 ## explicit
-golang.org/x/oauth2
-golang.org/x/oauth2/clientcredentials
-golang.org/x/oauth2/internal
 # golang.org/x/time v0.0.0-20200416051211-89c76fbcd5d1
 golang.org/x/time/rate
-# google.golang.org/appengine v1.4.0
-google.golang.org/appengine/internal
-google.golang.org/appengine/internal/base
-google.golang.org/appengine/internal/datastore
-google.golang.org/appengine/internal/log
-google.golang.org/appengine/internal/remote_api
-google.golang.org/appengine/internal/urlfetch
-google.golang.org/appengine/urlfetch
 # googlemaps.github.io/maps v1.3.2
 ## explicit
 googlemaps.github.io/maps
