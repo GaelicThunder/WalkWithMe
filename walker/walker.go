@@ -40,10 +40,11 @@ func (w *ConcreteWalker) PositionComputation(from, to string) (string, time.Dura
 	r := &maps.DirectionsRequest{
 		Origin:      from,
 		Destination: to,
+		Mode:        maps.TravelModeWalking,
 	}
 	route, _, err := c.Directions(context.Background(), r)
 	if err != nil {
-		return "", time.Duration(0), fmt.Errorf("error while getting the directions: %s",err.Error())
+		return "", time.Duration(0), fmt.Errorf("error while getting the directions: %s", err.Error())
 	}
 
 	// computate 1h walk
@@ -53,11 +54,11 @@ func (w *ConcreteWalker) PositionComputation(from, to string) (string, time.Dura
 		for j := 0; j < len(route[i].Legs); j++ {
 			totaltime += route[i].Legs[j].Duration
 			actualPosition = route[i].Legs[j].EndAddress
-			if totaltime >= 1*time.Hour {
+			if totaltime >= time.Duration(1)*time.Hour {
 				break
 			}
 		}
-		if totaltime >= 1*time.Hour {
+		if totaltime >= time.Duration(1)*time.Hour {
 			break
 		}
 	}
