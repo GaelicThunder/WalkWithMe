@@ -15,9 +15,9 @@ import (
 // the one with status "actual" is the walk we have to updated
 type WalkStatus struct {
 	ID               string
-	From             string
-	To               string
-	ActualPosition   string
+	From             string `dynamo:"from"`
+	To               string `dynamo:"to"`
+	ActualPosition   string `dynamo:"actualPosition"`
 	Status           string `dynamo:"status"`
 	TotalHoursWalked time.Duration
 	LastRest         time.Time
