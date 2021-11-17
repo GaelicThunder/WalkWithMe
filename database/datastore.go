@@ -18,7 +18,7 @@ type WalkStatus struct {
 	From             string
 	To               string
 	ActualPosition   string
-	Status           string
+	Status           string `dynamo:"status"`
 	TotalHoursWalked time.Duration
 	LastRest         time.Time
 }
