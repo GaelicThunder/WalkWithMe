@@ -48,6 +48,10 @@ func (w *ConcreteWalker) PositionComputation(from, to string) (string, time.Dura
 	}
 
 	// computate 1h walk
+	return w.computate1hWalk(route)
+}
+
+func (w *ConcreteWalker) computate1hWalk(route []maps.Route) (string, time.Duration, error) {
 	var totaltime time.Duration
 	var actualPosition string
 	for i := 0; i < len(route); i++ {
