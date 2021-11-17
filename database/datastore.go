@@ -46,7 +46,7 @@ func (d *DyanamoDB) GetWalk() (*WalkStatus, error) {
 
 // SaveWalk save the actual walk status
 func (d *DyanamoDB) SaveWalk(walk *WalkStatus) error {
-	err := d.db.Table("walkwithme").Put(walk).Run()
+	err := d.db.Table("walkwithme").Update(walk.Status, walk).Run()
 	if err != nil {
 		return err
 	}
