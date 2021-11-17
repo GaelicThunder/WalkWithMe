@@ -37,7 +37,7 @@ type DyanamoDB struct {
 // GetWalk return the actual walk in progress
 func (d *DyanamoDB) GetWalk() (*WalkStatus, error) {
 	var walk WalkStatus
-	err := d.db.Table("walkwithme").Get("Status", "actual").One(&walk)
+	err := d.db.Table("walkwithme").Get("status", "actual").One(&walk)
 	if err != nil {
 		return nil, err
 	}
