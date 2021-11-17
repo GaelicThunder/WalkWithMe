@@ -48,10 +48,14 @@ func processing(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRe
 	err = twitterconnector.NewTwitter().TweetStatusUpdate(fmt.Sprintf("Starting from %s after %s time I'm now at %s", walk.From, walk.TotalHoursWalked, walk.ActualPosition))
 	if err != nil {
 		log.Fatalf("error while twitting: %s", err)
+		return events.APIGatewayProxyResponse{Body: "", StatusCode: 200}, nil
 	}
 
 	// since we have done everything we can store the updated status to the database
-	db.SaveWalk(walk)
-
+	err = db.SaveWalk(walk)
+	if err != nil {
+		log.Fatalf("error while storing walk status: %s", err)
+		return events.APIGatewayProxyResponse{Body: "", StatusCode: 200}, nil
+	}
 	return events.APIGatewayProxyResponse{Body: "", StatusCode: 200}, nil
 }
