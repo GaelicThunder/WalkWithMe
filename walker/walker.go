@@ -47,6 +47,8 @@ func (w *ConcreteWalker) PositionComputation(from, to string) (string, time.Dura
 		return "", time.Duration(0), fmt.Errorf("error while getting the directions: %s", err.Error())
 	}
 
+	fmt.Printf("%+v\n", route)
+
 	// computate 1h walk
 	return w.computate1hWalk(route)
 }
